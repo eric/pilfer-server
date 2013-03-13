@@ -6,16 +6,38 @@
       <i class="icon-wrench"></i> Configure
       <% end %>
     </h3>
-
   </div>
 
   <%- if app.profiles.count == 0 -%>
-  <div class="alert alert-block alert-info">
+    <div class="alert alert-block alert-info">
       <h4>Setup your app</h4>
       To start sending profiles from your app <%= link_to 'head over here', app %> for details.
     </div>
   <%- else -%>
-  <%- app.profiles.latest.each do |profile| -%>
-  <%- end -%>
-  <%- end -%>
+    <%- app.profiles.latest.each do |profile| -%>
+    <div class="row well">
+      <div class="span1">
+        <span class="label label-info">#<%= profile.id %></span>
+      </div>
+      <div class="span5">
+        <%= link_to [ app, profile ] do %>
+          <% if profile.description %>
+          <strong><%= profile.description %></strong>
+          <% else %>
+          <em>Unknown profile</em>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="span2">
+        <strong><%= profile.hostname %>:<%= profile.pid %></strong>
+      </div>
+      <div class="offset1 span5">
+        <%= profile.created_at.to_s(:short) %>
+      </div>
+      <div class="span2">
+        <em>Unknown duration</em>
+      </div>
+    </div>
+    <%- end -%>
+    <%- end -%>
 <%- end -%>

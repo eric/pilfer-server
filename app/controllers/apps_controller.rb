@@ -6,7 +6,7 @@ class AppsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @apps }
+      # format.json { render json: @apps }
     end
   end
 
@@ -17,7 +17,7 @@ class AppsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @app }
+      # format.json { render json: @app }
     end
   end
 
@@ -28,7 +28,7 @@ class AppsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @app }
+      # format.json { render json: @app }
     end
   end
 
@@ -45,10 +45,10 @@ class AppsController < ApplicationController
     respond_to do |format|
       if @app.save
         format.html { redirect_to @app, notice: 'App was successfully created.' }
-        format.json { render json: @app, status: :created, location: @app }
+        # format.json { render json: @app, status: :created, location: @app }
       else
         format.html { render action: "new" }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
+        # format.json { render json: @app.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,10 +61,10 @@ class AppsController < ApplicationController
     respond_to do |format|
       if @app.update_attributes(params[:app])
         format.html { redirect_to @app, notice: 'App was successfully updated.' }
-        format.json { head :no_content }
+        # format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
+        # format.json { render json: @app.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,8 +76,8 @@ class AppsController < ApplicationController
     @app.destroy
 
     respond_to do |format|
-      format.html { redirect_to apps_url }
-      format.json { head :no_content }
+      format.html { redirect_to dashboard_url }
+      # format.json { head :no_content }
     end
   end
 end

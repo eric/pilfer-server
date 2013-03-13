@@ -4,11 +4,15 @@
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
+    <dl class="dl-horizontal">
+      <dt><%= f.object.class.human_attribute_name(:token) %>:</dt>
+      <dd><%= @app.token %></dd>
+    </dl>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                apps_path, :class => 'btn' %>
+                dashboard_path, :class => 'btn' %>
   </div>
 <% end %>
