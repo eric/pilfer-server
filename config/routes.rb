@@ -1,4 +1,20 @@
 Pilfer::Application.routes.draw do
+
+  authenticated_routes = lambda do
+    get '/dashboard', :to => 'dashboard#show', :as => :dashboard
+    
+    resources :apps do
+      resources :profiles
+    end
+  end
+  
+  if ENV['GITHUB_AUTH_TEAM'] || ENV['GITHUB_AUTH_ORG']
+    github_authenticate(:team => ENV['GITHUB_AUTH_TEAM'], :org => ENV['GITHUB_AUTH_ORG'], &authenticated_routes)
+  else
+    authenticated_routes.call
+  end
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +64,7 @@ Pilfer::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  hostname: MyString
+  pid: MyString
+  payload: MyText
+  app: 
+
+two:
+  hostname: MyString
+  pid: MyString
+  payload: MyText
+  app: 

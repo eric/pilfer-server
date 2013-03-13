@@ -2,10 +2,27 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'sqlite3'
+
+group :production do
+  gem 'pg'
+
+  # Use unicorn as the app server
+  gem 'unicorn'
+end
+
+group :development do
+  gem 'mysql2'
+
+  # For Procfile
+  gem 'foreman'
+  
+  # To use debugger
+  # gem 'debugger'
+end
+
+
+gem 'warden-github-rails'
 
 
 # Gems used only for assets and not required
@@ -31,11 +48,3 @@ gem 'jquery-rails'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'

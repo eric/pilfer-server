@@ -1,0 +1,21 @@
+<%- @apps.each do |app| -%>
+  <div class="page-header">
+    <h3>
+      <%= app.name %>
+      <%= link_to edit_app_path(app), :class => 'btn pull-right' do %>
+      <i class="icon-wrench"></i> Configure
+      <% end %>
+    </h3>
+
+  </div>
+
+  <%- if app.profiles.count == 0 -%>
+  <div class="alert alert-block">
+      <h4>Setup your app</h4>
+      To start sending profiles from your app <%= link_to 'head over here', app %> for details.
+    </div>
+  <%- else -%>
+  <%- app.profiles.latest.each do |profile| -%>
+  <%- end -%>
+  <%- end -%>
+<%- end -%>
