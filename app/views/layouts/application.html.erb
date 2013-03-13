@@ -61,6 +61,12 @@
     <div class="container">
         <div class="row">
           <div class="span9">
+            <%- unless Pilfer.secured? -%>
+              <div class="alert">
+                <strong>Warning!</strong> You are running in development mode without any security.
+              </div>
+            <%- end -%>
+
             <%= bootstrap_flash %>
             <%= yield %>
           </div>

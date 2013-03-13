@@ -10,6 +10,10 @@ if defined?(Bundler)
 end
 
 module Pilfer
+  def self.secured?
+    (ENV['GITHUB_AUTH_TEAM'].present? || ENV['GITHUB_AUTH_ORG'].present?)
+  end
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
