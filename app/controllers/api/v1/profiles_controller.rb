@@ -2,10 +2,11 @@ class Api::V1::ProfilesController < ApplicationController
   before_filter :authenticate_token
 
   def create
-    @app.profiles.create!(:hostname => params[:hostname], :pid => params[:pid], 
-      :description => params[:description], :payload => params[:profile].to_json,
-      :file_sources => params[:file_contents].to_json)
-    
+    @app.profiles.create!(:hostname     => params[:hostname],
+                          :pid          => params[:pid],
+                          :description  => params[:description],
+                          :payload      => params[:profile],
+                          :file_sources => params[:file_contents])
     head :ok
   end
   
