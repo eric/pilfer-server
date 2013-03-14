@@ -16,7 +16,7 @@ Send a test post:
               -H 'Content-Type: application/json' \
               -H 'Authorization: Token token="4B6dtepsro6v6gcSEy0KgQ"' \
               -d @test/fixtures/profile-payload-1.json \
-              http://0.0.0.0:3000/api/v1/profiles
+              http://0.0.0.0:5000/api/v1/profiles
 
 ## Deploying
 
