@@ -4,19 +4,27 @@ Look into your ruby with [rblineprof](https://github.com/tmm1/rblineprof/).
 
 ## Setup
 
-Setup the app:
+  1. Setup the app:
 
-    $ bundle install [--without production]
+    ``` bash
+    $ bundle install --without production
     $ cp config/database.example.yml config/database.yml
     $ rake db:setup
+    ```
 
-Send a test post:
+  2. Open a browser to [http://0.0.0.0:5000/apps/1](http://0.0.0.0:5000/apps/1),
+copy the token, and send a test post filling in `TOKEN` with the copied token:
 
+    ``` bash
     $ curl -v -H 'Accept: application/json' \
               -H 'Content-Type: application/json' \
-              -H 'Authorization: Token token="4B6dtepsro6v6gcSEy0KgQ"' \
+              -H 'Authorization: Token token="431KJqAg48qqb48ZcCRKyw"' \
               -d @test/fixtures/profile-payload-1.json \
               http://0.0.0.0:5000/api/v1/profiles
+    ```
+
+  3. Check the [dashboard](http://0.0.0.0:5000/dashboard) for the submitted
+profile.
 
 ## Deploying
 
