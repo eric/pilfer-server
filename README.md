@@ -18,3 +18,8 @@ Later on:
 
     rake secret # to generate a secret token
     heroku config:set SECRET_TOKEN={{your secret token}}
+
+
+## Sending a test post
+
+    $ curl -v -H 'Accept: application/json' -H 'Content-Type: application/json' -X POST  -H 'Authorization: Token token="4B6dtepsro6v6gcSEy0KgQ"' -d @test/fixtures/profile-payload-1.json http://0.0.0.0:3000/api/v1/profiles

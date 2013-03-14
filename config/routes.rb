@@ -18,6 +18,11 @@ Pilfer::Application.routes.draw do
     authenticated_routes.call
   end
   
+  namespace :api do
+    namespace :v1 do
+      resources :profiles
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313064335) do
+ActiveRecord::Schema.define(:version => 20130314000029) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(:version => 20130313064335) do
     t.string   "hostname"
     t.string   "pid"
     t.text     "payload"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "description"
+    t.text     "file_sources"
   end
 
   add_index "profiles", ["app_id"], :name => "index_profiles_on_app_id"

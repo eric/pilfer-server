@@ -3,25 +3,21 @@
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:app_id) %>:</strong></dt>
-  <dd><%= @profile.app_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:hostname) %>:</strong></dt>
-  <dd><%= @profile.hostname %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:pid) %>:</strong></dt>
-  <dd><%= @profile.pid %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:payload) %>:</strong></dt>
-  <dd><%= @profile.payload %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              profiles_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_profile_path(@profile), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              profile_path(@profile),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<div>
+    <% @sorted_profile.each do |filename, file_profile| %>
+    <% if @profile.file_sources[filename] && profile_value_for_sort(file_profile, @sort, @summary) > @minimum %>
+    <div>
+    <a href="#" class="js-lineprof-file"><%= filename %></a>
+    <pre style="display:none; overflow-x: scroll" class="line-profile">
+      <div >
+        <% @profile.file_sources[filename].split("\n").each_with_index do |line, idx| %>
+        <%= raw output_profile_line(line, file_profile['lines'][(idx).to_s]) %>
+        <% end %>
+      </div>
+    </pre>
+    </div>
+    <% else %>
+    <%= filename %>
+    <% end %>
+    <% end %>
 </div>

@@ -1,3 +1,14 @@
 // Place all the styles related to the Apps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+pre.line-profile {
+    font-family: monaco, monospace, courier, 'courier new', 'Bitstream Vera Sans Mono';
+    line-height: 140%;
+    font-size: 12px;
+    overflow-x: scroll
+}
+
+.line-profile div {
+  overflow-x: scroll
+}
