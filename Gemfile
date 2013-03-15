@@ -4,6 +4,7 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.12'
 gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
 gem 'warden-github-rails'
 
 # Use unicorn as the app server
@@ -22,7 +23,6 @@ end
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
 
   # Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
