@@ -4,10 +4,10 @@ one:
   hostname: MyString
   pid: MyString
   payload: MyText
-  app: 
+  app:
 
 two:
   hostname: MyString
   pid: MyString
   payload: MyText
-  app: 
+  app:

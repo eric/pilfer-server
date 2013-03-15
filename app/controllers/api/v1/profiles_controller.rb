@@ -9,7 +9,7 @@ class Api::V1::ProfilesController < ApplicationController
                           :file_sources => params[:file_contents])
     head :ok
   end
-  
+
   private
   def authenticate_token
     authenticate_or_request_with_http_token do |token, options|

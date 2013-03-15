@@ -2,12 +2,12 @@ Pilfer::Application.routes.draw do
 
   authenticated_routes = lambda do
     get '/dashboard', :to => 'dashboard#show', :as => :dashboard
-    
+
     resources :apps do
       resources :profiles
     end
   end
-  
+
   if Pilfer.secured?
     github_authenticate(:team => ENV['GITHUB_AUTH_TEAM'], :org => ENV['GITHUB_AUTH_ORG'], &authenticated_routes)
   else
@@ -17,13 +17,13 @@ Pilfer::Application.routes.draw do
 
     authenticated_routes.call
   end
-  
+
   namespace :api do
     namespace :v1 do
       resources :profiles
     end
   end
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
