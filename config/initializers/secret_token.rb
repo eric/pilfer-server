@@ -5,7 +5,10 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 
-if Rails.env.production? && ENV['SECRET_TOKEN'].blank?
+# Skip missing secret check when precompiling assets.
+if Rails.env.production? &&
+   Rails.groups.exclude?('assets') &&
+   ENV['SECRET_TOKEN'].blank?
   raise 'SECRET_TOKEN environment variable must be set!'
 end
 

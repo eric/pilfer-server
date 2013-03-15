@@ -11,7 +11,7 @@ Pilfer::Application.routes.draw do
   if Pilfer.secured?
     github_authenticate(:team => ENV['GITHUB_AUTH_TEAM'], :org => ENV['GITHUB_AUTH_ORG'], &authenticated_routes)
   else
-    if Rails.env.production?
+    if Rails.env.production? && Rails.groups.exclude?('assets')
       raise "GITHUB_AUTH_TEAM= or GITHUB_AUTH_ORG= must be specified in production"
     end
 
