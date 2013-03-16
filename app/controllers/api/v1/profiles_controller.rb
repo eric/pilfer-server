@@ -6,7 +6,7 @@ class Api::V1::ProfilesController < ApplicationController
                           :pid          => params[:pid],
                           :description  => params[:description],
                           :payload      => params[:profile],
-                          :file_sources => params[:file_contents])
+                          :file_sources => params[:file_sources])
     head :ok
   end
 
