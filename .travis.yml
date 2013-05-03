@@ -1,0 +1,10 @@
+language: ruby
+before_script:
+  - psql -c 'create database "pilfer_server_test";' -U postgres
+  - cp config/database.travis.yml config/database.yml
+script:
+  - rake db:migrate --trace
+  - rake test
+notifications:
+  email:
+    - larry@marburger.cc

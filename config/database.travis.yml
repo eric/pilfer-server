@@ -1,0 +1,4 @@
+test:
+  adapter:  postgresql
+  database: pilfer_server_test
+  username: postgres
