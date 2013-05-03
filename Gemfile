@@ -5,7 +5,7 @@ ruby '1.9.3'
 gem 'rails', '3.2.12'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
-gem 'warden-github-rails'
+gem 'warden-github'
 
 # Use unicorn as the app server
 group :production do
