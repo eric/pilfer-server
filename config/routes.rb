@@ -7,7 +7,7 @@ Pilfer::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :profiles
+      resources :profiles, :only => :create
     end
   end
 
