@@ -6,5 +6,5 @@ class Profile < ActiveRecord::Base
 
   belongs_to :app
 
-  scope :latest, limit(5).order('id DESC')
+  scope :latest, limit(50).order('id DESC')
 end
