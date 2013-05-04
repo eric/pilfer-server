@@ -7,4 +7,8 @@ class Profile < ActiveRecord::Base
   belongs_to :app
 
   scope :latest, limit(50).order('id DESC')
+
+  def total_time
+    payload['files'].inject(0) {|x, (file, data)| x + data['total'] }
+  end
 end

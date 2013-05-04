@@ -35,7 +35,7 @@
         <%= profile.created_at.to_s(:short) %>
       </div>
       <div class="span2">
-        <em>Unknown duration</em>
+        <em><%= number_with_delimiter(profile.total_time) %> ms</em>
       </div>
     </div>
     <%- end -%>
