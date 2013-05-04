@@ -2,7 +2,7 @@ Pilfer::Application.routes.draw do
   get '/dashboard', :to => 'dashboard#show', :as => :dashboard
 
   resources :apps do
-    resources :profiles
+    resources :profiles, :only => :show
   end
 
   namespace :api do
