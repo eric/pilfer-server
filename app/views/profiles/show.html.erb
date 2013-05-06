@@ -9,13 +9,38 @@
 
   <div class="row">
     <div class="span2">
-      <strong><%= @profile.hostname %>:<%= @profile.pid %></strong>
+      <strong>Wall:</strong>
+      <%= number_to_human(@profile.total_time / 1000.0,
+                          precision: 2,
+                          significant: false,
+                          units: { unit: 'ms',
+                                   thousand: 's' }) %>
     </div>
     <div class="span2">
+      <strong>CPU:</strong>
+      <%= number_to_human(@profile.cpu_time / 1000.0,
+                          precision: 2,
+                          significant: false,
+                          units: { unit: 'ms',
+                                   thousand: 's' }) %>
+    </div>
+    <div class="span2">
+      <strong>Idle:</strong>
+      <%= number_to_human(@profile.idle_time / 1000.0,
+                          precision: 2,
+                          significant: false,
+                          units: { unit: 'ms',
+                                   thousand: 's' }) %>
+    </div>
+    <div class="span6">
+      <strong>Host:</strong>
+      <%= @profile.hostname %>:<%= @profile.pid %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <strong>When:</strong>
       <%= time_ago_in_words(@profile.created_at) %> ago
-    </div>
-    <div class="span2">
-      <em><%= number_with_precision(@profile.total_time / 1000.0, precision: 2) %>ms</em>
     </div>
   </div>
 </div>
