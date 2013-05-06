@@ -1,8 +1,22 @@
 module ProfilesHelper
-  def file_profile_class(file_profile)
-    if file_profile['total'] > @minimum * 100
+  def profile_class(profile)
+    time = profile.total_time / 1000.0
+    if time > @minimum * 10
       'error'
-    elsif file_profile['total'] > @minimum
+    elsif time > @minimum
+      'warning'
+    end
+  end
+
+  def file_profile_class(file_profile, index = :none)
+    total = if index == :none
+              file_profile['total'] / 1000.0
+            else
+              profile_line_wall_time(file_profile, index) || 0
+            end
+    if total > @minimum * 100
+      'error'
+    elsif total > @minimum
       'warning'
     end
   end
@@ -11,46 +25,30 @@ module ProfilesHelper
     line_profile && line_profile['calls'] && line_profile['calls'] > 0
   end
 
-  def profile_line_wall_time(line_source, line_profile)
+  def profile_line_wall_time(file_profile, index)
+    line_profile = file_profile['lines'][index.to_s]
     return unless line_called?(line_profile)
-
-    wall_time = (line_profile['wall_time'] / 1000.0).round(2)
-    "#{number_with_delimiter(wall_time)}ms"
+    line_profile['wall_time'] / 1000.0
   end
 
-  def profile_line_cpu_time(line_source, line_profile)
+  def profile_line_cpu_time(file_profile, index)
+    line_profile = file_profile['lines'][index.to_s]
     return unless line_called?(line_profile)
-
-    cpu_time = (line_profile['cpu_time'] / 1000.0).round(2)
-    "#{number_with_delimiter(cpu_time)}ms"
+    line_profile['cpu_time'] / 1000.0
   end
 
-  def profile_line_calls(line_source, line_profile)
+  def profile_line_idle_time(file_profile, index)
+    line_profile = file_profile['lines'][index.to_s]
     return unless line_called?(line_profile)
-
-    number_with_delimiter(line_profile['calls'])
+    [ 0,
+      profile_line_wall_time(file_profile, index) -
+        profile_line_cpu_time(file_profile, index)
+    ].max
   end
 
-  def output_profile_line(line_source, line_profile)
-    if line_profile && line_profile['calls'] && line_profile['calls'] > 0
-      if @mode == 'cpu'
-        idle = line_profile['wall_time'] - line_profile['cpu_time']
-        cpu  = line_profile['wall_time']
-
-        idle = 0 if idle < 0
-
-        sprintf("% 8.1fms + % 8.1fms (% 5d) | %s", cpu/1000.0, idle/1000.0, line_profile['calls'], h(line_source))
-      else
-        total = line_profile['wall_time']
-
-        sprintf("% 8.1fms (% 5d) | %s", total/1000.0, line_profile['calls'], h(line_source))
-      end
-    else
-      if @mode == 'cpu'
-        sprintf("                                | %s", h(line_source))
-      else
-        sprintf("                   | %s", h(line_source))
-      end
-    end
+  def profile_line_calls(file_profile, index)
+    line_profile = file_profile['lines'][index.to_s]
+    return unless line_called?(line_profile)
+    line_profile['calls']
   end
 end

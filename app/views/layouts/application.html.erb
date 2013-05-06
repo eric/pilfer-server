@@ -35,74 +35,35 @@
     <%#= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
           <%= link_to 'Pilfer', dashboard_path, :class => 'brand' %>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <!--
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-              -->
-            </ul>
-          </div><!--/.nav-collapse -->
+          <ul class="nav">
+            <li><%= link_to 'Dashboard', dashboard_path %></li>
+            <li><%= link_to 'Apps', apps_path %></li>
+          </ul>
         </div>
       </div>
     </div>
 
     <div class="container">
-        <div class="row">
-          <div class="span9">
-            <%- unless Pilfer.secured? -%>
-              <div class="alert">
-                <strong>Warning!</strong> You are running in development mode without any security.
-              </div>
-            <%- end -%>
-
-            <%= bootstrap_flash %>
-            <%= yield %>
-          </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li>
-                  <%= link_to dashboard_path do %>
-                  <i class="icon-th"></i> Dashboard
-                  <% end %>
-                </li>
-
-                <li>
-                  <%= link_to new_app_path do %>
-                  <i class="icon-plus"></i> Add App
-                  <% end %>
-                </li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-        </div><!--/row-->
-
-      <footer class="footer">
-        <!--
-        <p>&copy; Company 2013</p>
-        -->
-      </footer>
-
-    </div> <!-- /container -->
+      <div class="row">
+        <div class="span12">
+          <%- unless Pilfer.secured? -%>
+            <div class="alert">
+              <strong>Warning!</strong> You are running in development mode without any security.
+            </div>
+          <%- end -%>
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
 
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-
   </body>
 </html>

@@ -1,14 +1,11 @@
-a.js-lineprof-file {
-  display: block
-}
+a.js-lineprof-file { display: block }
 
-tbody.view-profile tr.line-profile {
-  display: table-row;
-}
+tbody.view-profile tr.line-profile { display: table-row; }
+td { white-space: nowrap; }
+th.fill-column { width: 100%; }
 
 tr.line-profile {
   display: none;
-  // background-color: #f5f5f5;
 
   td {
     border-top: none;

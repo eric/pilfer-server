@@ -9,8 +9,20 @@ class Profile < ActiveRecord::Base
   scope :latest, limit(50).order('id DESC')
 
   def total_time
-    payload['files'].inject(0) {|total, (file, data)|
-      total + data['total']
-    }
+    sum_field('total')
+  end
+
+  def cpu_time
+    sum_field('total_cpu')
+  end
+
+  def idle_time
+    [ 0, total_time - cpu_time ].max
+  end
+
+  private
+
+  def sum_field(field)
+    payload['files'].inject(0) {|total, (file, data)| total + data[field] }
   end
 end

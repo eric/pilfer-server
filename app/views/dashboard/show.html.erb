@@ -14,30 +14,55 @@
       To start sending profiles from your app <%= link_to 'head over here', app %> for details.
     </div>
   <%- else -%>
-    <%- app.profiles.latest.each do |profile| -%>
-    <div class="row well">
-      <div class="span1">
-        <span class="label label-info">#<%= profile.id %></span>
-      </div>
-      <div class="span5">
-        <%= link_to [ app, profile ] do %>
-          <% if profile.description %>
-          <strong><%= profile.description %></strong>
-          <% else %>
-          <em>Unknown profile</em>
-          <% end %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="fill-column">Description</th>
+          <th>Wall</th>
+          <th>CPU</th>
+          <th>Idle</th>
+          <th>When</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% app.profiles.latest.each do |profile| %>
+          <tr class="<%= profile_class(profile) %>">
+            <td><span class="label label-info">#<%= profile.id %></span></td>
+            <td>
+              <%= link_to [ app, profile ] do %>
+                <% if profile.description %>
+                  <strong><%= profile.description %></strong>
+                <% else %>
+                  <em>Unknown profile</em>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= number_to_human(profile.total_time / 1000.0,
+                                  precision: 2,
+                                  significant: false,
+                                  units: { unit: 'ms',
+                                           thousand: 's' }) %>
+            </td>
+            <td>
+              <%= number_to_human(profile.cpu_time / 1000.0,
+                                  precision: 2,
+                                  significant: false,
+                                  units: { unit: 'ms',
+                                           thousand: 's' }) %>
+            </td>
+            <td>
+              <%= number_to_human(profile.idle_time / 1000.0,
+                                  precision: 2,
+                                  significant: false,
+                                  units: { unit: 'ms',
+                                           thousand: 's' }) %>
+            </td>
+            <td><%= time_ago_in_words profile.created_at %> ago</td>
+          </tr>
         <% end %>
-      </div>
-      <div class="span2">
-        <strong><%= profile.hostname %>:<%= profile.pid %></strong>
-      </div>
-      <div class="offset1 span5">
-        <%= time_ago_in_words profile.created_at %> ago
-      </div>
-      <div class="span2">
-        <em><%= number_with_delimiter(profile.total_time / 1000.0) %> ms</em>
-      </div>
-    </div>
-    <%- end -%>
-    <%- end -%>
+      </tbody>
+    </table>
+  <%- end -%>
 <%- end -%>

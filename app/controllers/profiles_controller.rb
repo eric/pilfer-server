@@ -5,7 +5,6 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = @app.profiles
-
     respond_to do |format|
       format.html
     end
@@ -14,8 +13,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = @app.profiles.find(params[:id])
 
-    @mode    = params[:mode]
-    @minimum = (params[:minimum] || 5).to_i * 1000
+    @minimum = (params[:minimum] || 5).to_i
     @sort    = params[:sort]
     @summary = params[:summary]
 
