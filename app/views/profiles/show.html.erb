@@ -86,27 +86,27 @@
     <% @profile.file_sources[filename].split("\n").each_with_index do |line, index| %>
     <tr class="line-profile <%= file_profile_class(file_profile, index) %>">
       <td>
-        <pre><%= number_to_human(profile_line_wall_time(file_profile, index),
+        <%= number_to_human(profile_line_wall_time(file_profile, index),
                             precision: 2,
                             significant: false,
                             units: { unit: 'ms',
-                                     thousand: 's' }) %></pre>
+                                     thousand: 's' }) %>
       </td>
       <td>
-        <pre><%= number_to_human(profile_line_cpu_time(file_profile, index),
+        <%= number_to_human(profile_line_cpu_time(file_profile, index),
                             precision: 2,
                             significant: false,
                             units: { unit: 'ms',
-                                     thousand: 's' }) %></pre>
+                                     thousand: 's' }) %>
       </td>
       <td>
-        <pre><%= number_to_human(profile_line_idle_time(file_profile, index),
+        <%= number_to_human(profile_line_idle_time(file_profile, index),
                             precision: 2,
                             significant: false,
                             units: { unit: 'ms',
-                                     thousand: 's' }) %></pre>
+                                     thousand: 's' }) %>
       </td>
-      <td><pre><%= profile_line_calls(file_profile, index) %></pre></td>
+      <td><%= profile_line_calls(file_profile, index) %></td>
       <td><pre><%= raw(line.empty? ? ' ' : line) %></pre></td>
     </tr>
     <% end %>
