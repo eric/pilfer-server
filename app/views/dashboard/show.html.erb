@@ -35,7 +35,7 @@
         <%= time_ago_in_words profile.created_at %> ago
       </div>
       <div class="span2">
-        <em><%= number_with_delimiter(profile.total_time) %> ms</em>
+        <em><%= number_with_delimiter(profile.total_time / 1000.0) %> ms</em>
       </div>
     </div>
     <%- end -%>
