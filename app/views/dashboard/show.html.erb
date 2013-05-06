@@ -32,7 +32,7 @@
         <strong><%= profile.hostname %>:<%= profile.pid %></strong>
       </div>
       <div class="offset1 span5">
-        <%= profile.created_at.to_s(:short) %>
+        <%= time_ago_in_words profile.created_at %> ago
       </div>
       <div class="span2">
         <em><%= number_with_delimiter(profile.total_time) %> ms</em>
