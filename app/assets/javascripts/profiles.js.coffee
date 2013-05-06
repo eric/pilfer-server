@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).on 'click', 'a.js-lineprof-file', ->
-  $(this).next('pre').toggle()
+  $(this).closest('tbody').toggleClass('view-profile')
   return false

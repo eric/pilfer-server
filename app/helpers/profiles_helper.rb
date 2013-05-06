@@ -1,5 +1,34 @@
 module ProfilesHelper
-  def is_profile_line_important?(line_profile)
+  def file_profile_class(file_profile)
+    if file_profile['total'] > @minimum * 100
+      'error'
+    elsif file_profile['total'] > @minimum
+      'warning'
+    end
+  end
+
+  def line_called?(line_profile)
+    line_profile && line_profile['calls'] && line_profile['calls'] > 0
+  end
+
+  def profile_line_wall_time(line_source, line_profile)
+    return unless line_called?(line_profile)
+
+    wall_time = (line_profile['wall_time'] / 1000.0).round(2)
+    "#{number_with_delimiter(wall_time)}ms"
+  end
+
+  def profile_line_cpu_time(line_source, line_profile)
+    return unless line_called?(line_profile)
+
+    cpu_time = (line_profile['cpu_time'] / 1000.0).round(2)
+    "#{number_with_delimiter(cpu_time)}ms"
+  end
+
+  def profile_line_calls(line_source, line_profile)
+    return unless line_called?(line_profile)
+
+    number_with_delimiter(line_profile['calls'])
   end
 
   def output_profile_line(line_source, line_profile)
