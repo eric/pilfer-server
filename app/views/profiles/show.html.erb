@@ -1,23 +1,62 @@
-<%- model_class = Profile -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>
+    <% if @profile.description %>
+      <%= @profile.description %>
+    <% else %>
+      <em>Unknown profile</em>
+    <% end %>
+  </h1>
+  <div class="row">
+    <div class="span2">
+      <strong><%= @profile.hostname %>:<%= @profile.pid %></strong>
+    </div>
+    <div class="span2">
+      <%= time_ago_in_words @profile.created_at %> ago
+    </div>
+    <div class="span2">
+      <em><%= number_with_delimiter(@profile.total_time) %> ms</em>
+    </div>
+  </div>
 </div>
 
-<div>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>CPU</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @sorted_profile.each do |filename, file_profile| %>
     <% if @profile.file_sources[filename] && profile_value_for_sort(file_profile, @sort, @summary) > @minimum %>
-    <div>
-    <a href="#" class="js-lineprof-file"><%= filename %></a>
-    <pre style="display:none; overflow-x: scroll" class="line-profile">
-      <div >
-        <% @profile.file_sources[filename].split("\n").each_with_index do |line, idx| %>
-        <%= raw output_profile_line(line, file_profile['lines'][(idx).to_s]) %>
-        <% end %>
-      </div>
-    </pre>
-    </div>
+      <tr class="warning">
+        <td><%= file_profile['total'] %></td>
+        <td><%= file_profile['total_cpu'] %></td>
+        <td>
+          <a href="#" class="js-lineprof-file"><%= filename %></a>
+          <pre style="display:none" class="line-profile">
+            <% @profile.file_sources[filename].split("\n").each_with_index do |line, idx| %>
+            <%= raw output_profile_line(line, file_profile['lines'][(idx).to_s]) %>
+            <% end %>
+          </pre>
+        </td>
+      </tr>
     <% else %>
-    <%= filename %>
+      <tr>
+        <td><%= file_profile['total'] %></td>
+        <td><%= file_profile['total_cpu'] %></td>
+        <td>
+          <a href="#" class="js-lineprof-file"><%= filename %></a>
+          <pre style="display:none" class="line-profile">
+            <% @profile.file_sources[filename].split("\n").each_with_index do |line, idx| %>
+            <%= raw output_profile_line(line, file_profile['lines'][(idx).to_s]) %>
+            <% end %>
+          </pre>
+        </td>
+      </tr>
     <% end %>
     <% end %>
-</div>
+  </tbody>
+</table>
