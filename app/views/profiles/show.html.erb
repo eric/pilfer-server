@@ -107,7 +107,7 @@
                                      thousand: 's' }) %>
       </td>
       <td><%= profile_line_calls(file_profile, index) %></td>
-      <td><pre><%= raw line %></pre></td>
+      <td><pre><%= raw(line.empty? ? ' ' : line) %></pre></td>
     </tr>
     <% end %>
   </tbody>
