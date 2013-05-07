@@ -14,6 +14,10 @@ table.line-profile {
   border: 1px solid #ddd;
   th { border-left: none; }
   td { border-left: none; }
+  th, td {
+    background-color: #f9f9f9;
+    &:last-child { background: none; }
+  }
 
   th { text-align: center; }
   td.stats {
