@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :fetch_app
+  before_filter :fetch_profile, :only => [ :show, :file ]
 
   helper_method :profile_value_for_sort
 
@@ -11,8 +12,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = @app.profiles.find(params[:id])
-
     @minimum = (params[:minimum] || 5).to_i
     @sort    = params[:sort]
     @summary = params[:summary]
@@ -33,9 +32,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def file
+    @filename     = params[:filename]
+    @file_profile = @profile.payload['files'][@filename]
+    @file_source  = @profile.file_sources[@filename]
+  end
+
   private
   def fetch_app
     @app = App.find(params[:app_id])
+  end
+
+  def fetch_profile
+    @profile = @app.profiles.find(params[:id])
   end
 
   def profile_value_for_sort(file_profile, sort, summary)

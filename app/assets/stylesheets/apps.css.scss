@@ -1,44 +1,37 @@
-a.js-lineprof-file { display: block }
-
-tbody.view-profile tr.line-profile { display: table-row; }
-td { white-space: nowrap; }
 th.fill-column { width: 100%; }
+td { white-space: nowrap; }
 
-tr.line-profile {
-  display: none;
-
-  table {
-    tbody {
-      td {
-        // Override parent table's striped style.
-        border-left: none;
-        &:first-child { border-left: 1px solid #ddd; }
-      }
-    }
-
-    td.stats {
-      text-align: right;
-
-      pre span {
-        display: inline-block;
-        width: 100%;
-      }
-    }
-
+table.line-profile {
+  // Override table's border style. Only border the table and th's.
+  tbody {
     td {
-      line-height: 0;
-      vertical-align: top;
+      border-left: none;
+      &:first-child { border-left: 1px solid #ddd; }
+    }
+  }
 
-      pre {
-        background: none;
-        border: none;
-        font-family: Consolas, "Liberation Mono", Courier, monospace;
-        font-size: 12px;
-        margin: 0;
-        padding: 0;
-        word-break: normal;
-        word-wrap: normal;
-      }
+  td.stats {
+    text-align: right;
+
+    pre span {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  td {
+    line-height: 0;
+    vertical-align: top;
+
+    pre {
+      background: none;
+      border: none;
+      font-family: Consolas, "Liberation Mono", Courier, monospace;
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      word-break: normal;
+      word-wrap: normal;
     }
   }
 }
