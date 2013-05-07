@@ -1,0 +1,15 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <div id="time-toggle" class="btn-group pull-right">
+        <button id="wall-time" type="button" class="btn active">Wall Time</button>
+        <button id="cpu-time" type="button" class="btn">CPU + Idle</button>
+      </div>
+      <ul class="nav">
+        <li><%= link_to 'Pilfer', dashboard_path, :class => 'brand' %>
+        <li><%= link_to 'Dashboard', dashboard_path %></li>
+        <li><%= link_to 'Apps', apps_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>

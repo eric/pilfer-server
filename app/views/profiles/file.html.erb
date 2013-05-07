@@ -3,9 +3,9 @@
 <table class="line-profile table table-bordered">
   <thead>
     <tr>
-      <th>Wall</th>
-      <th>CPU</th>
-      <th>Idle</th>
+      <th class="wall-time">Wall</th>
+      <th class="cpu-time">CPU</th>
+      <th class="cpu-time">Idle</th>
       <th>Calls</th>
       <th class="fill-column"></th>
     </tr>
@@ -24,21 +24,21 @@
             data[:calls] << profile_line_calls(@file_profile, index)
           end
     %>
-    <td class="stats">
+    <td class="stats wall-time">
 <pre>
 <%- line_data[:wall].each_with_index do |datum, index| -%>
 <span class="line-<%= index %>"><%= profile_time(datum) %></span>
 <%- end -%>
 </pre>
     </td>
-    <td class="stats">
+    <td class="stats cpu-time">
 <pre>
 <%- line_data[:cpu].each_with_index do |datum, index| -%>
 <span class="line-<%= index %>"><%= profile_time(datum) %></span>
 <%- end -%>
 </pre>
     </td>
-    <td class="stats">
+    <td class="stats cpu-time">
 <pre>
 <%- line_data[:idle].each_with_index do |datum, index| -%>
 <span class="line-<%= index %>"><%= profile_time(datum) %></span>

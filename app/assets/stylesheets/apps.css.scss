@@ -1,15 +1,21 @@
+body.wall-time {
+  th.cpu-time, td.cpu-time { display: none; }
+}
+
+body.cpu-time {
+  th.wall-time, td.wall-time { display: none; }
+}
+
 th.fill-column { width: 100%; }
 td { white-space: nowrap; }
 
 table.line-profile {
-  // Override table's border style. Only border the table and th's.
-  tbody {
-    td {
-      border-left: none;
-      &:first-child { border-left: 1px solid #ddd; }
-    }
-  }
+  // Override table's border style. Only border the table and th bottom.
+  border: 1px solid #ddd;
+  th { border-left: none; }
+  td { border-left: none; }
 
+  th { text-align: center; }
   td.stats {
     text-align: right;
 
