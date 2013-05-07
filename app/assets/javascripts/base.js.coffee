@@ -10,7 +10,7 @@ $ ->
     button.addClass('active')
     selectedTime = button.attr('id')
     $('body').addClass selectedTime
-    document.cookie = "time-toggle=#{selectedTime}"
+    document.cookie = "time-toggle=#{selectedTime}; path=/"
 
   cookieValue  = document.cookie.match(/time-toggle=([\w-]+)/)
   selectedTime = if cookieValue then cookieValue[1] else 'wall-time'
