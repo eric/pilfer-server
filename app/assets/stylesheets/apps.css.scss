@@ -13,9 +13,6 @@ tr.line-profile {
         // Override parent table's striped style.
         border-left: none;
         &:first-child { border-left: 1px solid #ddd; }
-
-        // Breathing room around code.
-        &:last-child { padding-left: 8px; }
       }
     }
 
