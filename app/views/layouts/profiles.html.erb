@@ -1,10 +1,12 @@
 <%= render :layout => 'layouts/base' do %>
   <div class="page-header">
     <h2>
-      <% if @profile.description %>
-        <%= @profile.description %>
-      <% else %>
-        <em>Unknown profile</em>
+      <%= link_to [ @app, @profile ] do %>
+        <% if @profile.description %>
+          <strong><%= @profile.description %></strong>
+        <% else %>
+          <em>Unknown profile</em>
+        <% end %>
       <% end %>
     </h2>
 
