@@ -7,23 +7,41 @@ th.fill-column { width: 100%; }
 tr.line-profile {
   display: none;
 
-  td {
-    border-top: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    vertical-align:middle;
-    line-height: 0;
-    font-family: Consolas, "Liberation Mono", Courier, monospace;
-    font-size: 12px;
+  table {
+    tbody {
+      td {
+        // Override parent table's striped style.
+        border-left: none;
+        &:first-child { border-left: 1px solid #ddd; }
 
-    pre {
-      background: none;
-      border: none;
-      padding: 0;
-      margin: 0;
-      line-height: 1em;
-      font-family: Consolas, "Liberation Mono", Courier, monospace;
-      font-size: 12px;
+        // Breathing room around code.
+        &:last-child { padding-left: 8px; }
+      }
+    }
+
+    td.stats {
+      text-align: right;
+
+      pre span {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    td {
+      line-height: 0;
+      vertical-align: top;
+
+      pre {
+        background: none;
+        border: none;
+        font-family: Consolas, "Liberation Mono", Courier, monospace;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        word-break: normal;
+        word-wrap: normal;
+      }
     }
   }
 }

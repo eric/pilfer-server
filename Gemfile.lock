@@ -80,6 +80,10 @@ GEM
       netrc (~> 0.7.7)
     pg (0.14.1)
     polyglot (0.3.3)
+    posix-spawn (0.3.6)
+    pygments.rb (0.5.0)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -142,6 +146,7 @@ GEM
     warden-github (0.14.0)
       octokit (>= 1.22.0)
       warden (> 1.0)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -152,6 +157,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   pg
+  pygments.rb
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
   therubyracer
