@@ -1,18 +1,18 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>Wall</th>
-      <th>CPU</th>
-      <th>Idle</th>
+      <th class="wall-time">Wall</th>
+      <th class="cpu-time">CPU</th>
+      <th class="cpu-time">Idle</th>
       <th class="fill-column">File</th>
     </tr>
   </thead>
   <tbody>
     <% @sorted_profile.each do |filename, file_profile| %>
     <tr class="<%= file_profile_class(file_profile) %>">
-      <td><%= profile_time(file_profile['total']) %></td>
-      <td><%= profile_time(file_profile['total_cpu']) %></td>
-      <td><%= profile_time(file_profile['total'] -
+      <td class="wall-time"><%= profile_time(file_profile['total']) %></td>
+      <td class="cpu-time"><%= profile_time(file_profile['total_cpu']) %></td>
+      <td class="cpu-time"><%= profile_time(file_profile['total'] -
                              file_profile['total_cpu']) %></td>
       <td><%= link_to filename, file_app_profile_path(@app, @profile,
                                                       :filename => filename) %></td>

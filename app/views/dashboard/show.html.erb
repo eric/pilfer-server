@@ -14,14 +14,14 @@
       To start sending profiles from your app <%= link_to 'head over here', app %> for details.
     </div>
   <%- else -%>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th></th>
-          <th>Description</th>
-          <th>Wall</th>
-          <th>CPU</th>
-          <th>Idle</th>
+          <th class="wall-time">Wall</th>
+          <th class="cpu-time">CPU</th>
+          <th class="cpu-time">Idle</th>
+          <th class="fill-column">Description</th>
           <th>When</th>
         </tr>
       </thead>
@@ -29,6 +29,27 @@
         <% app.profiles.latest.each do |profile| %>
           <tr class="<%= profile_class(profile) %>">
             <td><span class="label label-info">#<%= profile.id %></span></td>
+            <td class="wall-time">
+              <%= number_to_human(profile.total_time / 1000.0,
+                                  precision: 2,
+                                  significant: false,
+                                  units: { unit: 'ms',
+                                           thousand: 's' }) %>
+            </td>
+            <td class="cpu-time">
+              <%= number_to_human(profile.cpu_time / 1000.0,
+                                  precision: 2,
+                                  significant: false,
+                                  units: { unit: 'ms',
+                                           thousand: 's' }) %>
+            </td>
+            <td class="cpu-time">
+              <%= number_to_human(profile.idle_time / 1000.0,
+                                  precision: 2,
+                                  significant: false,
+                                  units: { unit: 'ms',
+                                           thousand: 's' }) %>
+            </td>
             <td>
               <%= link_to [ app, profile ] do %>
                 <% if profile.description %>
@@ -37,27 +58,6 @@
                   <em>Unknown profile</em>
                 <% end %>
               <% end %>
-            </td>
-            <td>
-              <%= number_to_human(profile.total_time / 1000.0,
-                                  precision: 2,
-                                  significant: false,
-                                  units: { unit: 'ms',
-                                           thousand: 's' }) %>
-            </td>
-            <td>
-              <%= number_to_human(profile.cpu_time / 1000.0,
-                                  precision: 2,
-                                  significant: false,
-                                  units: { unit: 'ms',
-                                           thousand: 's' }) %>
-            </td>
-            <td>
-              <%= number_to_human(profile.idle_time / 1000.0,
-                                  precision: 2,
-                                  significant: false,
-                                  units: { unit: 'ms',
-                                           thousand: 's' }) %>
             </td>
             <td><%= time_ago_in_words profile.created_at %> ago</td>
           </tr>
