@@ -1,32 +1,56 @@
 # Pilfer Server
 
-Look into your ruby with [rblineprof](https://github.com/tmm1/rblineprof/).
+Collect and display Ruby line profiles using
+[rblineprof](https://github.com/tmm1/rblineprof) and
+[pilfer](https://github.com/eric/pilfer). Gain insight into _exactly_ how your
+applications perform on production.
 
-## Setup
+Pilfer Server is a Rails app consisting of an API endpoint to collect line
+profiles and a handful of views to display them along side of the profiled
+code.
 
-  1. Setup the app:
+_TODO: Insert screenshots and link to bundler-api's profiles._
 
-    ``` bash
-    $ bundle install --without production
-    $ cp config/database.example.yml config/database.yml
-    $ rake db:setup
-    ```
+## Deploy
 
-  2. Open a browser to [http://0.0.0.0:5000/apps/1](http://0.0.0.0:5000/apps/1),
-copy the token, and send a test post filling in `TOKEN` with the copied token:
+Deploying your own Pilfer Server to Heroku is simple.
 
-    ``` bash
-    $ curl -v -H 'Accept: application/json' \
-              -H 'Content-Type: application/json' \
-              -H 'Authorization: Token token="431KJqAg48qqb48ZcCRKyw"' \
-              -d @test/fixtures/profile-payload-1.json \
-              http://0.0.0.0:5000/api/v1/profiles
-    ```
+Clone the repo.
 
-  3. Check the [dashboard](http://0.0.0.0:5000/dashboard) for the submitted
+```bash
+$ git clone https://github.com/eric/pilfer-server
+$ cd pilfer-server
+```
+
+Create and push to a new Heroku app.
+
+```bash
+$ heroku create
+Creating enigmatic-cliffs-7366... done, region is us
+http://enigmatic-cliffs-7366.herokuapp.com/ | git@heroku.com:enigmatic-cliffs-7366.git
+Git remote heroku added
+
+$ git push heroku master
+$ heroku config:set SECRET_TOKEN=`rake secret`
+$ heroku run rake db:setup
+```
+
+Start up the server, open [the dashboard](http://localhost:3000/dashboard),
+copy the test app's token, and send a test report.
+
+```bash
+$ rails server
+$ curl -v -H 'Accept: application/json' \
+          -H 'Content-Type: application/json' \
+          -H 'Authorization: Token token="YOUR_APP_TOKEN"' \
+          -d @test/fixtures/profile-payload-1.json \
+          http://localhost:3000/api/v1/profiles
+```
+
+Refresh [the dashboard](http://0.0.0.0:3000/dashboard) to see the submitted
 profile.
 
-## Deploying
+_Add github creds_
 
 Configure required environment variables:
 
@@ -38,7 +62,31 @@ and one of:
     GITHUB_AUTH_ORG=<organization_name>
     GITHUB_AUTH_TEAM=<team_id>
 
-Generate a secret token:
 
-    $ rake secret
-    $ heroku config:set SECRET_TOKEN={{your secret token}}
+## Contributing
+
+Setup Pilfer Server to run locally.
+
+```bash
+$ bundle install --without production
+$ cp config/database.example.yml config/database.yml
+$ rake db:setup
+```
+
+SQLite is used by default. Optionally, use PostgreSQL or MySQL by adding the
+database's connection information to `config/database.yml`.
+
+Start up the server, open [the dashboard](http://localhost:3000/dashboard),
+copy the test app's token, and send a test report.
+
+```bash
+$ rails server
+$ curl -v -H 'Accept: application/json' \
+          -H 'Content-Type: application/json' \
+          -H 'Authorization: Token token="YOUR_APP_TOKEN"' \
+          -d @test/fixtures/profile-payload-1.json \
+          http://localhost:3000/api/v1/profiles
+```
+
+Head to the [dashboard](http://0.0.0.0:3000/dashboard) to see the submitted
+profile.
