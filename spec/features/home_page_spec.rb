@@ -1,4 +1,4 @@
-require 'integration_helper'
+require 'features/helper'
 
 describe 'Viewing the home page' do
   before do visit home_page_path end

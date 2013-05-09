@@ -6,15 +6,16 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'bundler'
 Bundler.setup
 
-require File.expand_path("../../config/environment", __FILE__)
+require_relative '../../config/environment'
 require 'rspec/rails'
 require 'rspec/autorun'
 
 require 'capybara/rspec'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+# Require all files in spec/features/support/
+support_file_paths = File.expand_path('support/**/*.rb',
+                                      File.dirname(__FILE__))
+Dir[support_file_paths].each {|f| require f}
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true

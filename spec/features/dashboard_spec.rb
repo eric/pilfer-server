@@ -1,4 +1,4 @@
-require 'integration_helper'
+require 'features/helper'
 
 describe 'Viewing dashboard' do
   context 'with no apps' do
