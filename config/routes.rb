@@ -15,5 +15,5 @@ Pilfer::Application.routes.draw do
     end
   end
 
-  root :to => 'welcome#index'
+  root :to => 'welcome#index', :as => :home_page
 end

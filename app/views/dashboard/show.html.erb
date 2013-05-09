@@ -1,68 +1,78 @@
-<%- @apps.each do |app| -%>
-  <div class="page-header">
-    <h3>
-      <%= app.name %>
-      <%= link_to edit_app_path(app), :class => 'btn pull-right' do %>
-      <i class="icon-wrench"></i> Configure
-      <% end %>
-    </h3>
+<% if @apps.empty? %>
+  <div class="alert alert-block alert-info">
+    <h4>You have no apps!</h4>
+    <%= link_to 'Create one now', new_app_path %>
+    to start collecting profiles.
   </div>
-
-  <%- if app.profiles.count == 0 -%>
-    <div class="alert alert-block alert-info">
-      <h4>Setup your app</h4>
-      To start sending profiles from your app <%= link_to 'head over here', app %> for details.
-    </div>
-  <%- else -%>
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="wall-time">Wall</th>
-          <th class="cpu-time">CPU</th>
-          <th class="cpu-time">Idle</th>
-          <th class="fill-column">Description</th>
-          <th>When</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% app.profiles.latest.each do |profile| %>
-          <tr class="<%= profile_class(profile) %>">
-            <td><span class="label label-info">#<%= profile.id %></span></td>
-            <td class="wall-time">
-              <%= number_to_human(profile.total_time / 1000.0,
-                                  precision: 2,
-                                  significant: false,
-                                  units: { unit: 'ms',
-                                           thousand: 's' }) %>
-            </td>
-            <td class="cpu-time">
-              <%= number_to_human(profile.cpu_time / 1000.0,
-                                  precision: 2,
-                                  significant: false,
-                                  units: { unit: 'ms',
-                                           thousand: 's' }) %>
-            </td>
-            <td class="cpu-time">
-              <%= number_to_human(profile.idle_time / 1000.0,
-                                  precision: 2,
-                                  significant: false,
-                                  units: { unit: 'ms',
-                                           thousand: 's' }) %>
-            </td>
-            <td>
-              <%= link_to [ app, profile ] do %>
-                <% if profile.description %>
-                  <strong><%= profile.description %></strong>
-                <% else %>
-                  <em>Unknown profile</em>
-                <% end %>
-              <% end %>
-            </td>
-            <td><%= time_ago_in_words profile.created_at %> ago</td>
-          </tr>
+<% else %>
+  <% @apps.each do |app| %>
+    <div class="page-header">
+      <h3>
+        <%= app.name %>
+        <%= link_to edit_app_path(app), :class => 'btn pull-right' do %>
+        <i class="icon-wrench"></i> Configure
         <% end %>
-      </tbody>
-    </table>
-  <%- end -%>
-<%- end -%>
+      </h3>
+    </div>
+
+    <% if app.profiles.count == 0 %>
+      <div class="alert alert-block alert-info">
+        <h4>Setup your app</h4>
+        Use the token
+        <strong><%= app.token %></strong>
+        to start sending profiles to your app.
+      </div>
+    <% else %>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="wall-time">Wall</th>
+            <th class="cpu-time">CPU</th>
+            <th class="cpu-time">Idle</th>
+            <th class="fill-column">Description</th>
+            <th>When</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% app.profiles.latest.each do |profile| %>
+            <tr class="<%= profile_class(profile) %>">
+              <td><span class="label label-info">#<%= profile.id %></span></td>
+              <td class="wall-time">
+                <%= number_to_human(profile.total_time / 1000.0,
+                                    precision: 2,
+                                    significant: false,
+                                    units: { unit: 'ms',
+                                             thousand: 's' }) %>
+              </td>
+              <td class="cpu-time">
+                <%= number_to_human(profile.cpu_time / 1000.0,
+                                    precision: 2,
+                                    significant: false,
+                                    units: { unit: 'ms',
+                                             thousand: 's' }) %>
+              </td>
+              <td class="cpu-time">
+                <%= number_to_human(profile.idle_time / 1000.0,
+                                    precision: 2,
+                                    significant: false,
+                                    units: { unit: 'ms',
+                                             thousand: 's' }) %>
+              </td>
+              <td>
+                <%= link_to [ app, profile ] do %>
+                  <% if profile.description %>
+                    <strong><%= profile.description %></strong>
+                  <% else %>
+                    <em>Unknown profile</em>
+                  <% end %>
+                <% end %>
+              </td>
+              <td><%= time_ago_in_words profile.created_at %> ago</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+<% end %>

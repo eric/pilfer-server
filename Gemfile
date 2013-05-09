@@ -33,3 +33,10 @@ group :production do
   gem 'pg'
   gem 'unicorn'
 end
+
+gem 'rspec', group: [ :test, :development ]
+
+group :test do
+  gem 'capybara'
+  gem 'rspec-rails'
+end

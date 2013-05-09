@@ -70,6 +70,7 @@ class ProfilesController < ApplicationController
   end
 
   def sorted_profile(profile, sort, summary)
+    return [] unless profile.payload and profile.payload['files']
     profile.payload['files'].sort_by do |filename, file_profile|
       profile_value_for_sort(file_profile, sort, summary)
     end.reverse

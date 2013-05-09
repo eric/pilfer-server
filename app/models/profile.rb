@@ -23,6 +23,7 @@ class Profile < ActiveRecord::Base
   private
 
   def sum_field(field)
+    return 0 unless payload and payload['files']
     payload['files'].inject(0) {|total, (file, data)| total + data[field] }
   end
 end
