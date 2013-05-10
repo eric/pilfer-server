@@ -9,7 +9,7 @@ Pilfer::Application.routes.draw do
     end
   end
 
-  post 'api/v1/profiles' => 'api/v1/profiles#create', :as => :api_profiles
+  post 'api/profiles' => 'api/profiles#create', :as => :api_profiles
 
   root :to => 'welcome#show', :as => :home_page
 end

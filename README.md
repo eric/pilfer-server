@@ -44,7 +44,7 @@ $ curl -v -H 'Accept: application/json' \
           -H 'Content-Type: application/json' \
           -H 'Authorization: Token token="YOUR_APP_TOKEN"' \
           -d @test/fixtures/profile-payload-1.json \
-          http://localhost:3000/api/v1/profiles
+          http://localhost:3000/api/profiles
 ```
 
 Refresh [the dashboard](http://0.0.0.0:3000/dashboard) to see the submitted
@@ -86,7 +86,7 @@ $ curl -v -H 'Accept: application/json' \
           -H 'Content-Type: application/json' \
           -H 'Authorization: Token token="YOUR_APP_TOKEN"' \
           -d @spec/features/api/support/profile.json \
-          http://localhost:3000/api/v1/profiles
+          http://localhost:3000/api/profiles
 ```
 
 Head to the [dashboard](http://0.0.0.0:3000/dashboard) to see the submitted
