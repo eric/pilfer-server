@@ -51,6 +51,8 @@ describe 'Viewing dashboard' do
       visit dashboard_path
     end
 
+    after do ENV['GITHUB_UNSECURED'] = '' end
+
     it 'redirects to dashboard' do
       expect(page).to_not have_content('You are running in development mode without any security.')
     end
