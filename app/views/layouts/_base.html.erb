@@ -42,7 +42,7 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-          <%- unless Pilfer.secured? -%>
+          <%- if !Pilfer.ignore_security? && !Pilfer.secured? -%>
             <div class="alert">
               <strong>Warning!</strong> You are running in development mode without any security.
             </div>

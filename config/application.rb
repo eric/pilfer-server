@@ -14,6 +14,10 @@ module Pilfer
     (ENV['GITHUB_AUTH_TEAM'].present? || ENV['GITHUB_AUTH_ORG'].present?)
   end
 
+  def self.ignore_security?
+    ENV['GITHUB_UNSECURED'].present?
+  end
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
