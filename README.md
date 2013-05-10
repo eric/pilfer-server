@@ -71,6 +71,7 @@ Setup Pilfer Server to run locally.
 $ bundle install --without production
 $ cp config/database.example.yml config/database.yml
 $ rake db:setup
+$ rake db:test:prepare
 ```
 
 SQLite is used by default. Optionally, use PostgreSQL or MySQL by adding the
