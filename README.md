@@ -85,7 +85,7 @@ $ rails server
 $ curl -v -H 'Accept: application/json' \
           -H 'Content-Type: application/json' \
           -H 'Authorization: Token token="YOUR_APP_TOKEN"' \
-          -d @test/fixtures/profile-payload-1.json \
+          -d @spec/features/api/support/profile.json \
           http://localhost:3000/api/v1/profiles
 ```
 
