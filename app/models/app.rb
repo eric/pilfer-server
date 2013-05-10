@@ -5,10 +5,7 @@ class App < ActiveRecord::Base
 
   has_many :profiles
 
-  def rehash_token!
-    rehash_token
-    save!
-  end
+  private
 
   def rehash_token
     while true
