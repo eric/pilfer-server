@@ -1,11 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 
-# Using a standalone bundle and binstubs means bundler won't be loaded. Rails
-# assumes all gems in the bundle are loaded.
-require 'bundler'
-Bundler.setup
-
 require_relative '../../config/environment'
 require 'rspec/rails'
 require 'rspec/autorun'
