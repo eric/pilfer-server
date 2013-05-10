@@ -5,7 +5,7 @@ describe 'Viewing the home page' do
 
   context 'without authorization configured' do
     it 'shows a warning message' do
-      find('.alert').should have_content('You are running in development mode without any security.')
+      expect(page).to have_content('You are running in development mode without any security.')
     end
   end
 

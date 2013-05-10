@@ -19,7 +19,7 @@ describe 'Viewing dashboard' do
     end
 
     it "shows the app's token" do
-      find('.alert-info').should have_content(app.token)
+      expect(page).to have_content(app.token)
     end
   end
 
