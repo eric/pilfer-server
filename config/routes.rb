@@ -11,5 +11,5 @@ Pilfer::Application.routes.draw do
 
   post 'api/v1/profiles' => 'api/v1/profiles#create', :as => :api_profiles
 
-  root :to => 'welcome#index', :as => :home_page
+  root :to => 'welcome#show', :as => :home_page
 end

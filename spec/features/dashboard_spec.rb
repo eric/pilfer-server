@@ -36,4 +36,12 @@ describe 'Viewing dashboard' do
       expect(current_path).to eq(app_profile_path(app, profile))
     end
   end
+
+  context 'without authorization configured' do
+    before do visit dashboard_path end
+
+    it 'shows a warning message' do
+      expect(page).to have_content('You are running in development mode without any security.')
+    end
+  end
 end
