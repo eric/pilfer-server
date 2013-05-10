@@ -5,6 +5,10 @@ describe 'Viewing the home page' do
     before do visit home_page_path end
 
     it 'shows sign in button'
+
+    context 'signed in' do
+      it 'redirects to dashboard'
+    end
   end
 
   context 'without authorization configured' do
