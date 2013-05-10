@@ -50,6 +50,7 @@ describe 'Viewing dashboard' do
       ENV['GITHUB_UNSECURED'] = 'true'
       visit dashboard_path
     end
+    after do ENV.delete 'GITHUB_UNSECURED' end
 
     it 'redirects to dashboard' do
       expect(page).to_not have_content('You are running in development mode without any security.')

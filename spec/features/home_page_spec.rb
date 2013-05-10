@@ -20,6 +20,7 @@ describe 'Viewing the home page' do
       ENV['GITHUB_UNSECURED'] = 'true'
       visit home_page_path
     end
+    after do ENV.delete 'GITHUB_UNSECURED' end
 
     it 'redirects to dashboard' do
       expect(current_path).to eq(dashboard_path)
