@@ -9,15 +9,9 @@ gem 'pygments.rb'
 gem 'twitter-bootstrap-rails'
 gem 'warden-github'
 
-# Use unicorn as the app server
-group :production do
-  gem 'pg'
-# gem 'activerecord-postgresql-adapter'
-  gem 'unicorn'
-end
-
 group :development do
   gem 'foreman'
+  gem 'sqlite3'
 end
 
 # Gems used only for assets and not required
@@ -32,4 +26,17 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
+end
+
+# Use unicorn as the app server
+group :production do
+  gem 'pg'
+  gem 'unicorn'
+end
+
+gem 'rspec', group: [ :test, :development ]
+
+group :test do
+  gem 'capybara'
+  gem 'rspec-rails'
 end

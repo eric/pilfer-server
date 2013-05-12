@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: "Rails"
-  token: token1
-
-two:
-  name: "Sinatra"
-  token: token2

@@ -1,4 +1,4 @@
-class Api::V1::ProfilesController < ApplicationController
+class Api::ProfilesController < ApplicationController
   before_filter      :authenticate_token
   skip_before_filter :require_github_authentication
 

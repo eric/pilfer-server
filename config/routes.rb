@@ -9,11 +9,7 @@ Pilfer::Application.routes.draw do
     end
   end
 
-  namespace :api do
-    namespace :v1 do
-      resources :profiles, :only => :create
-    end
-  end
+  post 'api/profiles' => 'api/profiles#create', :as => :api_profiles
 
-  root :to => 'welcome#index'
+  root :to => 'welcome#show', :as => :home_page
 end
