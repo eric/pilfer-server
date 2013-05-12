@@ -1,15 +1,16 @@
 # Pilfer Server
 
-Collect and display Ruby line profiles using
-[rblineprof](https://github.com/tmm1/rblineprof) and
-[pilfer](https://github.com/eric/pilfer). Gain insight into _exactly_ how your
-applications perform on production.
+Collect and display Ruby line profiles reported from [pilfer][]. Gain insight
+into _exactly_ how your code performs on production.
 
-Pilfer Server is a Rails app consisting of an API endpoint to collect line
-profiles and a handful of views to display them along side of the profiled
-code.
+Pilfer uses [rblineprof][] to measure how long each line of code takes to
+execute and the number of times it was called. Pilfer Server is a Rails app
+to collect these profiles and display them along side of the profiled code.
 
-_TODO: Insert screenshots and link to bundler-api's profiles._
+![Pilfer Profile.png](http://cl.ly/image/2a1d332M2w05/Pilfer%20Profile.png)
+
+Take a look at some [Pilfer profiles collected][bundler-pilfer] on the the
+Bundler API site.
 
 ## Deploy
 
@@ -35,22 +36,25 @@ $ heroku config:set SECRET_TOKEN=`rake secret`
 $ heroku run rake db:setup
 ```
 
-Start up the server, open [the dashboard](http://localhost:3000/dashboard),
-copy the test app's token, and send a test report.
+Visit the new app in your browser, go to the dashboard, and copy the test
+app's token to send a test report.
 
 ```bash
-$ rails server
 $ curl -v -H 'Accept: application/json' \
           -H 'Content-Type: application/json' \
           -H 'Authorization: Token token="YOUR_APP_TOKEN"' \
           -d @spec/features/api/support/profile.json \
-          http://localhost:3000/api/profiles
+          http://enigmatic-cliffs-7366.herokuapp.com/api/profiles
 ```
 
-Refresh [the dashboard](http://0.0.0.0:3000/dashboard) to see the submitted
-profile.
+Refresh the dashboard to see the submitted profile.
 
-_Add github creds_
+## Security
+
+GitHub authentication is used to restrict access to only memebers belonging to
+a given GitHub Organization or Team.
+
+_TODO: Document creating a new GitHub application. https://github.com/settings/applications/new_
 
 Configure required environment variables:
 
@@ -62,6 +66,18 @@ and one of:
     GITHUB_AUTH_ORG=<organization_name>
     GITHUB_AUTH_TEAM=<team_id>
 
+## Submit Profiles
+
+```ruby
+require 'pilfer'
+
+reporter = Pilfer::Server.new('https://pilfer.com', 'YOUR_APP_TOKEN')
+profiler = Pilfer::Profiler.new(reporter)
+profiler.profile('bubble sorting') do
+  array = (0..100).to_a.shuffle
+  bubble_sort array
+end
+```
 
 ## Contributing
 
@@ -91,3 +107,8 @@ $ curl -v -H 'Accept: application/json' \
 
 Head to the [dashboard](http://0.0.0.0:3000/dashboard) to see the submitted
 profile.
+
+
+[rblineprof]:     https://github.com/tmm1/rblineprof
+[pilfer]:         https://github.com/eric/pilfer
+[bundler-pilfer]: https://pilfer.herokuapp.com/dashboard
