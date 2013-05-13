@@ -157,3 +157,4 @@ details.
 [bundler-pilfer]: https://pilfer.herokuapp.com/dashboard
 [register]:       https://github.com/settings/applications/new
 [dashboard]:      http://localhost:3000/dashboard
+[license]:        LICENSE
