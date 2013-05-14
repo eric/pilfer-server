@@ -59,7 +59,7 @@ class AppsController < ApplicationController
     @app = App.find(params[:id])
 
     respond_to do |format|
-      if @app.update_attributes(params[:app])
+      if @app.update(app_params)
         format.html { redirect_to @app, notice: 'App was successfully updated.' }
         # format.json { head :no_content }
       else
@@ -79,5 +79,11 @@ class AppsController < ApplicationController
       format.html { redirect_to dashboard_url }
       # format.json { head :no_content }
     end
+  end
+
+  private
+
+  def app_params
+    params.require(:app).permit(:name)
   end
 end

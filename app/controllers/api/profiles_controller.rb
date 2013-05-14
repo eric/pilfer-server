@@ -1,6 +1,8 @@
 class Api::ProfilesController < ApplicationController
-  before_filter      :authenticate_token
-  skip_before_filter :require_github_authentication
+  protect_from_forgery with: :null_session
+
+  before_action      :authenticate_token
+  skip_before_action :require_github_authentication
 
   def create
     @app.profiles.create!(:hostname     => params[:hostname],

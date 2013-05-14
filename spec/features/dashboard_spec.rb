@@ -25,7 +25,9 @@ describe 'Viewing dashboard' do
 
   context 'with an app' do
     let(:app)     { App.create!(name: 'My App') }
-    let(:profile) { app.profiles.create!(description:  'Profile') }
+    let(:profile) { app.profiles.create!(description:  'Profile',
+                                         payload:      {},
+                                         file_sources: {}) }
     before do
       profile
       visit dashboard_path
