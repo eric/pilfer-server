@@ -1,6 +1,4 @@
 class App < ActiveRecord::Base
-  attr_accessible :name
-
   before_create :rehash_token
 
   has_many :profiles
