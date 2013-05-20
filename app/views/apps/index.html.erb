@@ -13,7 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    <% @apps.each do |app| %>
+    <% if @apps.present? -%>
+      <% @apps.each do |app| %>
       <tr>
         <td><%= link_to app.id, app_path(app) %></td>
         <td><%= app.name %></td>
@@ -29,7 +30,14 @@
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
-    <% end %>
+      <% end %>
+    <% else -%>
+      <tr>
+        <td colspan="5">
+          No apps found. <%= link_to 'Create a new App', new_app_path %>
+        </td>
+      </tr>
+    <% end -%>
   </tbody>
 </table>
 
