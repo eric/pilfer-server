@@ -50,9 +50,9 @@ describe 'Managing Apps' do
       expect{ click_link 'Delete' }.to change { App.count }.by(-1)
     end
 
-    it 'redirects to dashboard' do
+    it 'redirects to app listing' do
       click_link 'Delete'
-      expect(current_path).to eq(dashboard_path)
+      expect(current_path).to eq(apps_path)
     end
   end
 
@@ -80,10 +80,9 @@ describe 'Managing Apps' do
         expect(page).to have_content('successfully created')
       end
 
-      it 'redirects to app details' do
+      it 'redirects to app listing' do
         create_app
-        app = App.last
-        expect(current_path).to eq(app_path(app))
+        expect(current_path).to eq(apps_path)
       end
     end
 
@@ -127,9 +126,9 @@ describe 'Managing Apps' do
         expect(page).to have_content('successfully updated')
       end
 
-      it 'redirects to app details' do
+      it 'redirects to app listing' do
         update_app
-        expect(current_path).to eq(app_path(app))
+        expect(current_path).to eq(apps_path)
       end
     end
   end
