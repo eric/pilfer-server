@@ -1,18 +1,32 @@
 <%= form_for @app, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% if @app.errors.any? %>
+    <div class="alert alert-block alert-error">
+      <p><strong>Oops, something went wrong!</strong></p>
+      <ul>
+        <% @app.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
+    <% if @app.persisted? -%>
     <dl class="dl-horizontal">
       <dt><%= f.object.class.human_attribute_name(:token) %>:</dt>
       <dd><%= @app.token %></dd>
     </dl>
+    <% end -%>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                dashboard_path, :class => 'btn' %>
+                apps_path, :class => 'btn' %>
   </div>
 <% end %>

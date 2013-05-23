@@ -3,6 +3,8 @@ class App < ActiveRecord::Base
 
   has_many :profiles
 
+  validates :name, presence: true, uniqueness: true
+
   private
 
   def rehash_token
