@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_filter :fetch_app
-  before_filter :fetch_profile, :only => [ :show, :file ]
+  before_action :fetch_app
+  before_action :fetch_profile, :only => [ :show, :file ]
 
   helper_method :profile_value_for_sort
 
@@ -39,6 +39,7 @@ class ProfilesController < ApplicationController
   end
 
   private
+
   def fetch_app
     @app = App.find(params[:app_id])
   end

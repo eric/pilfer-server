@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  before_filter :require_github_authentication
+  protect_from_forgery with: :exception
+  before_action :require_github_authentication
 
   protected
 

@@ -26,7 +26,7 @@ describe Profile do
   context 'with no payload' do
     let(:profile_data) {
       data = JSON.parse(profile_file)
-      data.delete 'profile'
+      data['profile'] = {}
       data
     }
 
