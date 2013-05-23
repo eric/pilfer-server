@@ -186,7 +186,7 @@ DEPENDENCIES
   less-rails
   pg
   pygments.rb
-  rails (= 4.0.0.rc1)
+  rails (~> 4.0.0.rc1)
   rspec
   rspec-rails
   sass-rails (~> 4.0.0.rc1)

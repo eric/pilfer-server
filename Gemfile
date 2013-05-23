@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '~> 4.0.0.rc1'
 
 gem 'jquery-rails'
 gem 'pygments.rb'
 gem 'twitter-bootstrap-rails'
+gem 'less-rails'
 gem 'warden-github'
 
 group :development do

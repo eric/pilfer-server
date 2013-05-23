@@ -27,5 +27,12 @@ module Pilfer
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Heroku + twitter-bootstrap-rails + fontawesome doesn't play nicely.
+    # https://github.com/seyhunak/twitter-bootstrap-rails/issues/535
+    config.assets.precompile += %w( fontawesome-webfont.ttf
+                                    fontawesome-webfont.eot
+                                    fontawesome-webfont.svg
+                                    fontawesome-webfont.woff )
   end
 end
