@@ -4,10 +4,12 @@
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
-    <dl class="dl-horizontal">
-      <dt><%= f.object.class.human_attribute_name(:token) %>:</dt>
-      <dd><%= @app.token %></dd>
-    </dl>
+    <% unless @app.new_record? %>
+      <dl class="dl-horizontal">
+        <dt><%= f.object.class.human_attribute_name(:token) %>:</dt>
+        <dd><%= @app.token %></dd>
+      </dl>
+    <% end %>
   </div>
 
   <div class="form-actions">
