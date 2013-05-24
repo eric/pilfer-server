@@ -12,11 +12,8 @@ describe 'Viewing dashboard' do
   end
 
   context 'with a new app' do
-    let(:app) { App.create!(name: 'My App') }
-    before do
-      app
-      visit dashboard_path
-    end
+    let!(:app) { App.create!(name: 'My App') }
+    before do visit dashboard_path end
 
     it "shows the app's token" do
       expect(page).to have_content(app.token)
@@ -24,14 +21,11 @@ describe 'Viewing dashboard' do
   end
 
   context 'with an app' do
-    let(:app)     { App.create!(name: 'My App') }
-    let(:profile) { app.profiles.create!(description:  'Profile',
-                                         payload:      {},
-                                         file_sources: {}) }
-    before do
-      profile
-      visit dashboard_path
-    end
+    let(:app)      { App.create!(name: 'My App') }
+    let!(:profile) { app.profiles.create!(description:  'Profile',
+                                          payload:      {},
+                                          file_sources: {}) }
+    before do visit dashboard_path end
 
     it "shows the app's profile" do
       click_link profile.description

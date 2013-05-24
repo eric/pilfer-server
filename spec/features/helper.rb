@@ -5,6 +5,8 @@ require_relative '../../config/environment'
 require 'rspec/rails'
 require 'rspec/autorun'
 
+require 'support/focused_specs'
+
 require 'capybara/rspec'
 
 # Require all files in spec/features/support/

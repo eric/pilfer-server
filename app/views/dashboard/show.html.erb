@@ -1,9 +1,5 @@
 <% if @apps.empty? %>
-  <div class="alert alert-block alert-info">
-    <h4>You have no apps!</h4>
-    <%= link_to 'Create one now', new_app_path %>
-    to start collecting profiles.
-  </div>
+  <%= render partial: 'apps/no_apps' %>
 <% else %>
   <% @apps.each do |app| %>
     <div class="page-header">
