@@ -133,7 +133,7 @@ Start up the server and open [the dashboard][dashboard]. Copy the test app's
 token and run the following command to send a test report.
 
 ```bash
-$ rails server
+$ bundle exec rails server
 $ curl -H 'Accept: application/json' \
        -H 'Content-Type: application/json' \
        -H 'Authorization: Token token="xnvbDW2CiGXRThNgGpyvog"' \
