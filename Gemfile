@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 1.0.1'
 group :production do
   gem 'pg'
   gem 'unicorn'
+
+  # required for static asset serving and logging on Heroku
+  gem 'rails_12factor', '~> 0.0.2'
 end
 
 gem 'rspec', group: [ :test, :development ]
