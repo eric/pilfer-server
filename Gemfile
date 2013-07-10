@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '~> 4.0.0.rc1'
+gem 'rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 gem 'pygments.rb'
@@ -16,7 +16,7 @@ group :development do
 end
 
 gem 'coffee-rails', '~> 4.0.0'
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
